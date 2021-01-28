@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Test";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Customers</h1>
+</div>
+
+@{ 
+    for (int i = 0; i < 5; i++)
+    {
+        Html.RenderPartial("_CustomerBlock");
+
+    }
+}

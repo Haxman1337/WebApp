@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CustomerService</title>
+    @Scripts.Render("~/bundles/jquery")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/maskedinput")
+    @Styles.Render("~/Content/css")
+
+
+    <style media="screen">
+        body {
+            margin: 0;
+            padding: 0;
+            background: #dcdcdc;
+            padding-top: 4.5rem;
+        }
+
+        .Client {
+        }
+
+        .ClientPanel {
+            height: auto;
+            padding: 5 0;
+            width: 700px;
+            border: black solid 2px;
+            margin: 3px;
+            margin: 1.5px auto;
+        }
+
+        .Sidebar {
+            height: 100vh;
+            width: 75px;
+            border: black solid 2px;
+            margin: 0px 4px 0px 0px;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        .ClientTable {
+            border: none;
+            border-spacing: 10 2;
+            text-align: left;
+        }
+
+        .ClientDropDown {
+            width: 683px;
+            display: none;
+        }
+
+        .ClientDropDownTable {
+            border-collapse: separate;
+            border: none;
+            border-spacing: 20 0;
+            text-align: left;
+            font-size: 20px;
+        }
+
+            .ClientDropDownTable td {
+                padding-left: 0;
+            }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="@Url.Action("Index", "Home")">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Customers", "Home")">Customers </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Orders", "Home")">Orders</a>
+                </li>
+            </ul>
+            <form class="form-inline mt-2 mt-md-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <div class="container">
+        <main role="main" class="container">
+            @RenderBody()
+        </main>
+    </div>
+    <script>
+        $(document).on("click", function (event) {
+            var target = event.target;
+            switch (target.className) {
+                case 'ShowHideDropDownButton':
+                    var clientPanel = $(target).parents('.Client');
+                    if (target.id == 'hidden') {
+                        clientPanel.children('.ClientDropDown').css("display", "block");
+                        target.id = 'nothidden';
+                        $(target).html('Скрыть заказы');
+                    }
+                    else {
+                        clientPanel.children('.ClientDropDown').css("display", "none");
+                        target.id = 'hidden';
+                        $(target).html('Заказы...');
+                    }
+                    break;
+                case 'ChangeableName':
+                    var input = $('<input />');
+                    input.val($(target).text());
+                    target.replaceWith($(input)[0]);
+                    var save = function () {
+                        var th = $('<th class="ChangeableName"/>').html(input.val());
+                        input.replaceWith(th);
+                    };
+                    input.one('blur', save).focus();
+                    break;
+                case 'ChangeablePhone':
+                    var input = $('<input />');
+                    input.mask("+7(999) 999-9999");
+                    input.val($(target).text());
+                    target.replaceWith($(input)[0]);
+                    var save = function () {
+                        var th = $('<th class="ChangeablePhone"/>').html(input.val());
+                        input.replaceWith(th);
+                    };
+                    input.one('blur', save).focus();
+                    break;
+                case 'ChangeableDate':
+                    var input = $('<input />');
+                    input.mask("99.99.9999");
+                    input.val($(target).text());
+                    $(target).replaceWith($(input)[0]);
+                    var save = function () {
+                        var th = $('<th class="ChangeableDate"/>').html(input.val());
+                        input.replaceWith(th);
+                    };
+                    input.one('blur', save).focus();
+                    break;
+                case 'ChangeableEmail':
+                    var input = $('<input type="email"/>');
+                    input.val($(target).text());
+                    target.replaceWith($(input)[0]);
+                    var save = function () {
+                        var th = $('<th class="ChangeableEmail"/>').html(input.val());
+                        input.replaceWith(th);
+                    };
+                    input.one('blur', save).focus();
+                    break;
+                case 'dropdown-item':
+                    switch ($(target).attr('id')) {
+                        case 'dropdownBought':
+                            var statusButton = $(target).parents('.dropdown').children('#dropdownMenuLink')
+                            $(statusButton).html("Куплен");
+                            $(statusButton).css("background-color", "green");
+                            break;
+                        case 'dropdownBlocked':
+                            var statusButton = $(target).parents('.dropdown').children('#dropdownMenuLink')
+                            $(statusButton).html("Заблокирован");
+                            $(statusButton).css("background-color", "red");
+                            break;
+                        case 'dropdownReturned':
+                            var statusButton = $(target).parents('.dropdown').children('#dropdownMenuLink')
+                            $(statusButton).html("Возвращен");
+                            $(statusButton).css("background-color", "DarkBlue");
+                            break;
+                    }
+                    break;
+            }
+        })
+    </script>
+
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
