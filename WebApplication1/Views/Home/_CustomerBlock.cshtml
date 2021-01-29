@@ -1,6 +1,5 @@
-﻿@*
-    
-*@
+﻿@model System.Xml.XmlElement
+
 <div class="Client">
     <div class="ClientPanel">
         <table class="ClientTable">
@@ -25,7 +24,7 @@
     @{
         for (int i = 0; i < 2; i++)
         {
-            Html.RenderPartial("_ClientDropDown");
+            Html.RenderPartial("_ClientDropDown", Model);
         }
     }
 </div>

@@ -12,6 +12,7 @@
     @Styles.Render("~/Content/css")
 
 
+        <!--Перенести с отдельный файл, а лучше вовсе избавиться-->
     <style media="screen">
         body {
             margin: 0;
@@ -30,6 +31,7 @@
             border: black solid 2px;
             margin: 3px;
             margin: 1.5px auto;
+            border-radius: 3px;
         }
 
         .Sidebar {
@@ -68,17 +70,17 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="@Url.Action("Index", "Home")">Home</a>
+        <a class="navbar-brand" href="@Url.Action("Index", "Home")">Домашняя</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Customers", "Home")">Customers </a>
+                    <a class="nav-link" href="@Url.Action("Customers", "Home")">Клиенты</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Orders", "Home")">Orders</a>
+                    <a class="nav-link" href="@Url.Action("Orders", "Home")">Заказы</a>
                 </li>
             </ul>
             <form class="form-inline mt-2 mt-md-0">
@@ -93,6 +95,7 @@
         </main>
     </div>
     <script>
+        // для тестов это пока побудет здесь, а не в отдельном файле
         $(document).on("click", function (event) {
             var target = event.target;
             switch (target.className) {
