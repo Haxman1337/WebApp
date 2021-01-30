@@ -5,26 +5,38 @@
         <table class="ClientTable">
             <tr>
                 <td>ФИО</td>
-                <th class="ChangeableName">%name%</th>
+                <th class="ChangeableName">@Model.GetElementsByTagName("Name")[0].InnerText</th>
                 <td>Тел.</td>
-                <th class="ChangeablePhone">%phone%</th>
+                <th class="ChangeablePhone">@Model.GetElementsByTagName("Phone")[0].InnerText</th>
                 <td>ДР</td>
-                <th class="ChangeableDate">%birdate%</th>
+                <th class="ChangeableDate">@Model.GetElementsByTagName("Birdate")[0].InnerText</th>
             </tr>
             <tr>
                 <td></td>
                 <th><button type="button" class="ShowHideDropDownButton" id="hidden">Заказы...</button></td>
                 <td>e-mail</td>
-                <th class="ChangeableEmail">%email%</td>
+                <th class="ChangeableEmail">@Model.GetElementsByTagName("Email")[0].InnerText</td>
                 <td>Рег.</td>
-                <th class="">%regdate%</th>
+                <th class="">@Model.GetElementsByTagName("Regdate")[0].InnerText</th>
             </tr>
         </table>
     </div>
     @{
-        for (int i = 0; i < 2; i++)
+
+        foreach (System.Xml.XmlElement xnode in Model)
+        {
+            if (xnode.Name == "Orders")
+            {
+                foreach (System.Xml.XmlElement elem in xnode.ChildNodes)
+                {
+                    Html.RenderPartial("_ClientDropDown", elem);
+
+                }
+            }
+        }
+        /*for (int i = 0; i < 2; i++)
         {
             Html.RenderPartial("_ClientDropDown", Model);
-        }
+        }*/
     }
 </div>

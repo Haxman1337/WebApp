@@ -3,9 +3,11 @@
     <table class="ClientDropDownTable">
         <tr>
             <th class="ChangeableStatus">
+
                 <div class="StatusDropdown">
                     <div class="dropdown">
-                        <a class="btn btn-secondary" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">%status%</a>
+                        @{ string color = "";  string status = Model.GetAttribute("Status"); if (status == "Куплен") { color += "green;"; } else if (status == "Возвращен") { color += "DarkBlue;"; } else { color += "Red;"; } }
+                        <a class="btn btn-secondary" href="#" style="background-color: @color" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">@status</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" id="dropdownBlocked" href="#">Заблокирован</a>
                             <a class="dropdown-item" id="dropdownBought" href="#">Куплен</a>
@@ -14,9 +16,9 @@
                     </div>
                 </div>
             </th>
-            <th class="ChangeableName">%name%</th>
-            <th class="ChangeableAmount">%value%</th>
-            <th class="ChangeableDate">@Model.FirstChild.FirstChild.InnerText @{/*just a test */</th>
+            <th class="ChangeableName">@Model.GetAttribute("Customer")</th>
+            <th class="ChangeableAmount">@Model.GetAttribute("Value")</th>
+            <th class="ChangeableDate">@Model.GetAttribute("Regdate")</th>
         </tr>
     </table>
 </div>
