@@ -1,0 +1,49 @@
+﻿@model System.Xml.XmlElement
+<div class="Client">
+    <div class="ClientPanel">
+        id: @Model.GetAttribute("cid")
+        <table>
+            <tr>
+                <td>ФИО</td>
+                <th colspan="4" class="ChangeableName">@Model.GetAttribute("Name")</th>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>Тел.</td>
+                <th class="ChangeablePhone">@Model.GetAttribute("Phone")</th>
+                <td></td>
+                <td />
+                <td>e-mail</td>
+                <th class="ChangeableEmail">@Model.GetAttribute("Email")</th>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td />
+                <th><button type="button" class="ShowHideDropDownButton" id="hidden">Заказы...</button></th>
+                <td>ДР</td>
+                <th class="ChangeableDate">@Model.GetAttribute("Birdate")</th>
+                <td>Рег.</td>
+                <th class="">@Model.GetAttribute("Regdate")</th>
+            </tr>
+        </table>
+    </div>
+    @{
+
+        foreach (System.Xml.XmlElement xnode in Model)
+        {
+            if (xnode.Name == "COrders")
+            {
+                foreach (System.Xml.XmlElement elem in xnode.ChildNodes)
+                {
+                    Html.RenderPartial("_ClientDropDown", elem);
+                }
+            }
+        }
+        /*for (int i = 0; i < 2; i++)
+        {
+            Html.RenderPartial("_ClientDropDown", Model);
+        }*/
+    }
+</div>

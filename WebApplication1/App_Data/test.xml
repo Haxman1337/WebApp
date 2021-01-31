@@ -1,48 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <root>
-  <Customer>
-    <Name>Name1</Name>
-    <Birdate>11.11.1111</Birdate>
-    <Email>dasdsadasd@xyz.com</Email>
-    <Phone>1234567890</Phone>
-    <Regdate>11.11.1111</Regdate>
-    <Orders>
-      <Order Customer="Name1" Value="1111" Regdate="11.11.1111" Status="Заблокирован">
-      </Order>
-      <Order Customer="Name1" Value="1111" Regdate="11.11.1111" Status="Заблокирован">
-      </Order>
-      <Order Customer="Name1" Value="1111" Regdate="11.11.1111" Status="Заблокирован">
-      </Order>
-    </Orders>
-  </Customer>
-  <Customer>
-    <Name>Name2</Name>
-    <Birdate>11.11.1111</Birdate>
-    <Email>dasdsadasd@xyz.com</Email>
-    <Phone>1234567890</Phone>
-    <Regdate>11.11.1111</Regdate>
-    <Orders>
-      <Order Customer="Name2" Value="1111" Regdate="11.11.1111" Status="Заблокирован">
-      </Order>
-      <Order Customer="Name2" Value="1111" Regdate="11.11.1111" Status="Заблокирован">
-      </Order>
-      <Order Customer="Name2" Value="1111" Regdate="11.11.1111" Status="Заблокирован">
-      </Order>
-    </Orders>
-  </Customer>
-  <Customer>
-    <Name>Name3</Name>
-    <Birdate>11.11.1111</Birdate>
-    <Email>dasdsadasd@xyz.com</Email>
-    <Phone>1234567890</Phone>
-    <Regdate>11.11.1111</Regdate>
-    <Orders>
-      <Order Customer="Name3" Value="1111" Regdate="11.11.1111" Status="Заблокирован">
-      </Order>
-      <Order Customer="Name3" Value="1111" Regdate="11.11.1111" Status="Заблокирован">
-      </Order>
-      <Order Customer="Name3" Value="1111" Regdate="11.11.1111" Status="Заблокирован">
-      </Order>
-    </Orders>
-  </Customer>
+  <Customers>
+    <Customer cid="1" Name="Name1" Birdate="11.11.1111" Email="dasdsadasd@xyz.com" Phone="1234567890" Regdate="11.11.1111">
+      <COrders>
+        <Corder coid="1"/>
+        <Corder coid="2"/>
+        <Corder coid="3"/>
+      </COrders>
+    </Customer>
+    <Customer cid="2" Name="Name2" Birdate="11.11.1111" Email="dasdsadasd@xyz.com" Phone="1234567890" Regdate="11.11.1111">
+      <COrders>
+        <order coid="4"/>
+        <order coid="5"/>
+        <order coid="6"/>
+        <order coid="7"/>
+      </COrders>
+    </Customer>
+    <Customer cid="3" Name="Name2" Birdate="11.11.1111" Email="dasdsadasd@xyz.com" Phone="1234567890" Regdate="11.11.1111">
+      <COrders>
+      </COrders>
+    </Customer>
+  </Customers>
+  <Orders>
+    <Order oid="1" Customer="1" Value="1111" Regdate="11.11.1111" Status="Заблокирован"/>
+    <Order oid="2" Customer="1" Value="1111" Regdate="11.11.1111" Status="Заблокирован"/>
+    <Order oid="3" Customer="1" Value="1111" Regdate="11.11.1111" Status="Заблокирован"/>
+    <Order oid="4" Customer="2" Value="1111" Regdate="11.11.1111" Status="Заблокирован"/>
+    <Order oid="5" Customer="2" Value="1111" Regdate="11.11.1111" Status="Заблокирован"/>
+    <Order oid="6" Customer="2" Value="1111" Regdate="11.11.1111" Status="Заблокирован"/>
+    <Order oid="7" Customer="2" Value="1111" Regdate="11.11.1111" Status="Заблокирован"/>
+  </Orders>
 </root>

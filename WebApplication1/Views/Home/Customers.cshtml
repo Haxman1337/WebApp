@@ -9,9 +9,17 @@
 @model System.Xml.XmlElement
 
 @{
+
     foreach (System.Xml.XmlElement xnode in Model)
     {
-        Html.RenderPartial("_CustomerBlock", xnode);
+        if (xnode.Name == "Customers")
+        {
+            foreach (System.Xml.XmlElement xnode2 in xnode)
+            {
+                Html.RenderPartial("_CustomerBlockV2", xnode2);
+
+            }
+        }
     }
     /*for (int i = 0; i < 5; i++)
     {

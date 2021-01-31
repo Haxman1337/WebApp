@@ -93,88 +93,110 @@
         <main role="main" class="container">
             @RenderBody()
         </main>
-    </div>
-    <script>
-        // для тестов это пока побудет здесь, а не в отдельном файле
-        $(document).on("click", function (event) {
-            var target = event.target;
-            switch (target.className) {
-                case 'ShowHideDropDownButton':
-                    var clientPanel = $(target).parents('.Client');
-                    if (target.id == 'hidden') {
-                        clientPanel.children('.ClientDropDown').css("display", "block");
-                        target.id = 'nothidden';
-                        $(target).html('Скрыть заказы');
-                    }
-                    else {
-                        clientPanel.children('.ClientDropDown').css("display", "none");
-                        target.id = 'hidden';
-                        $(target).html('Заказы...');
-                    }
-                    break;
-                case 'ChangeableName':
-                    var input = $('<input />');
-                    input.val($(target).text());
-                    target.replaceWith($(input)[0]);
-                    var save = function () {
-                        var th = $('<th class="ChangeableName"/>').html(input.val());
-                        input.replaceWith(th);
-                    };
-                    input.one('blur', save).focus();
-                    break;
-                case 'ChangeablePhone':
-                    var input = $('<input />');
-                    input.mask("+7(999) 999-9999");
-                    input.val($(target).text());
-                    target.replaceWith($(input)[0]);
-                    var save = function () {
-                        var th = $('<th class="ChangeablePhone"/>').html(input.val());
-                        input.replaceWith(th);
-                    };
-                    input.one('blur', save).focus();
-                    break;
-                case 'ChangeableDate':
-                    var input = $('<input />');
-                    input.mask("99.99.9999");
-                    input.val($(target).text());
-                    $(target).replaceWith($(input)[0]);
-                    var save = function () {
-                        var th = $('<th class="ChangeableDate"/>').html(input.val());
-                        input.replaceWith(th);
-                    };
-                    input.one('blur', save).focus();
-                    break;
-                case 'ChangeableEmail':
-                    var input = $('<input type="email"/>');
-                    input.val($(target).text());
-                    target.replaceWith($(input)[0]);
-                    var save = function () {
-                        var th = $('<th class="ChangeableEmail"/>').html(input.val());
-                        input.replaceWith(th);
-                    };
-                    input.one('blur', save).focus();
-                    break;
-                case 'dropdown-item':
-                    switch ($(target).attr('id')) {
-                        case 'dropdownBought':
-                            var statusButton = $(target).parents('.dropdown').children('#dropdownMenuLink')
-                            $(statusButton).html("Куплен");
-                            $(statusButton).css("background-color", "green");
-                            break;
-                        case 'dropdownBlocked':
-                            var statusButton = $(target).parents('.dropdown').children('#dropdownMenuLink')
-                            $(statusButton).html("Заблокирован");
-                            $(statusButton).css("background-color", "red");
-                            break;
-                        case 'dropdownReturned':
-                            var statusButton = $(target).parents('.dropdown').children('#dropdownMenuLink')
-                            $(statusButton).html("Возвращен");
-                            $(statusButton).css("background-color", "DarkBlue");
-                            break;
-                    }
-                    break;
-            }
-        })
+    </div><script>
+                    // для тестов это пока побудет здесь, а не в отдельном файле
+                    $(document).on("click", function (event) {
+                        var target = event.target;
+                        switch (target.className) {
+                            case 'ShowHideDropDownButton':
+                                var clientPanel = $(target).parents('.Client');
+                                if (target.id == 'hidden') {
+                                    clientPanel.children('.ClientDropDown').css("display", "block");
+                                    target.id = 'nothidden';
+                                    $(target).html('Скрыть заказы');
+                                }
+                                else {
+                                    clientPanel.children('.ClientDropDown').css("display", "none");
+                                    target.id = 'hidden';
+                                    $(target).html('Заказы...');
+                                }
+                                break; case 'dropdown-item':
+                                switch ($(target).attr('id')) {
+                                    case 'dropdownBought':
+                                        var statusButton = $(target).parents('.dropdown').children('#dropdownMenuLink')
+                                        $(statusButton).html("Куплен");
+                                        $(statusButton).css("background-color", "green");
+                                        break;
+                                    case 'dropdownBlocked':
+                                        var statusButton = $(target).parents('.dropdown').children('#dropdownMenuLink')
+                                        $(statusButton).html("Заблокирован");
+                                        $(statusButton).css("background-color", "red");
+                                        break;
+                                    case 'dropdownReturned':
+                                        var statusButton = $(target).parents('.dropdown').children('#dropdownMenuLink')
+                                        $(statusButton).html("Возвращен");
+                                        $(statusButton).css("background-color", "DarkBlue");
+                                        break;
+                                }
+                                break;
+                        }
+                        switch (target.className) {
+                            case 'ChangeableName':
+                                var input = $('<input />');
+                                input.val($(target).text());
+                                target.replaceWith($(input)[0]);
+                                var save = function () {
+                                    var th = $('<th class="ChangeableName"/>').html(input.val());
+                                    input.replaceWith(th);
+                                };
+                                input.one('blur', save).focus();
+                                break;
+                            case 'ChangeablePhone':
+                                var input = $('<input />');
+                                input.mask("+7(999) 999-9999");
+                                input.val($(target).text());
+                                target.replaceWith($(input)[0]);
+                                var save = function () {
+                                    var th = $('<th class="ChangeablePhone"/>').html(input.val());
+                                    input.replaceWith(th);
+                                };
+                                input.one('blur', save).focus();
+                                break;
+                            case 'ChangeableDate':
+                                var input = $('<input />');
+                                input.mask("99.99.9999");
+                                input.val($(target).text());
+                                $(target).replaceWith($(input)[0]);
+                                var save = function () {
+                                    var th = $('<th class="ChangeableDate"/>').html(input.val());
+                                    input.replaceWith(th);
+                                };
+                                input.one('blur', save).focus();
+                                break;
+                            case 'ChangeableEmail':
+                                var input = $('<input type="email"/>');
+                                input.val($(target).text());
+                                target.replaceWith($(input)[0]);
+                                var save = function () {
+                                    var th = $('<th class="ChangeableEmail"/>').html(input.val());
+                                    input.replaceWith(th);
+                                };
+                                input.one('blur', save).focus();
+                                break;
+                            case 'dropdown-item':
+                                switch ($(target).attr('id')) {
+                                    case 'dropdownBought':
+                                        var statusButton = $(target).parents('.dropdown').children('#dropdownMenuLink')
+                                        $(statusButton).html("Куплен");
+                                        $(statusButton).css("background-color", "green");
+                                        break;
+                                    case 'dropdownBlocked':
+                                        var statusButton = $(target).parents('.dropdown').children('#dropdownMenuLink')
+                                        $(statusButton).html("Заблокирован");
+                                        $(statusButton).css("background-color", "red");
+                                        break;
+                                    case 'dropdownReturned':
+                                        var statusButton = $(target).parents('.dropdown').children('#dropdownMenuLink')
+                                        $(statusButton).html("Возвращен");
+                                        $(statusButton).css("background-color", "DarkBlue");
+                                        break;
+                                }
+                                break;
+                        }
+                                
+                        
+                    
+                    });
     </script>
 
 
