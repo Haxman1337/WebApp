@@ -1,6 +1,6 @@
 ﻿@model System.Xml.XmlElement
 <div class="Client">
-    <div class="ClientPanel">
+    <div class="ClientPanel" id="@Model.GetAttribute("cid")">
         id: @Model.GetAttribute("cid")
         <table>
             <tr>
@@ -37,7 +37,7 @@
             {
                 foreach (System.Xml.XmlElement elem in xnode.ChildNodes)
                 {
-                    Html.RenderPartial("_ClientDropDown", elem);
+                    Html.RenderPartial("_CustomerDropDown", elem);
                 }
             }
         }

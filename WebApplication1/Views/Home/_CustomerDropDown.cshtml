@@ -9,25 +9,31 @@
     string color = ""; if (status == "Куплен") { color += "green;"; } else if (status == "Возвращен") { color += "DarkBlue;"; } else { color += "Red;"; }
 
 }
-<div class="ClientDropDown ClientPanel">
+<div class="ClientDropDown ClientPanel" id="@Model.GetAttribute("coid")">
     id: @Model.GetAttribute("coid")
     <table class="ClientDropDownTable">
+        <tr>
+            <td>Статус</td>
+            <td>Имя</td>
+            <td>Сумма</td>
+            <td>Дата</td>
+        </tr>
         <tr>
             <th class="ChangeableStatus">
                 <div class="StatusDropdown">
                     <div class="dropdown">
                         <a class="btn btn-secondary" href="#" style="background-color: @color" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">@status</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" id="dropdownBlocked" href="#">Заблокирован</a>
-                            <a class="dropdown-item" id="dropdownBought" href="#">Куплен</a>
-                            <a class="dropdown-item" id="dropdownReturned" href="#">Возвращен</a>
+                            <a class="dropdown-item" id="dropdownBlocked" href="#" onclick="return false">Заблокирован</a>
+                            <a class="dropdown-item" id="dropdownBought" href="#" onclick="return false">Куплен</a>
+                            <a class="dropdown-item" id="dropdownReturned" href="#" onclick="return false">Возвращен</a>
                         </div>
                     </div>
                 </div>
             </th>
-            <th class="ChangeableName">@customer</th>
+            <th class="">@customer</th>
             <th class="ChangeableAmount">@value</th>
-            <th class="ChangeableDate">@regdate</th>
+            <th class="ChangeableOrderDate">@regdate</th>
         </tr>
     </table>
 </div>
