@@ -131,7 +131,7 @@
                                             url: '@Url.Action("SetOrderStatus", "API")',
                                             data: { id: blockId, param: "Куплен"},
                                             success: function (data) {
-                                                if (data == "ERROR") {
+                                                if (data.includes("ERROR")) {
 
                                                 }
                                             }
@@ -147,7 +147,7 @@
                                             url: '@Url.Action("SetOrderStatus", "API")',
                                             data: { id: blockId, param: "Заблокирован" },
                                             success: function (data) {
-                                                if (data == "ERROR") {
+                                                if (data.includes("ERROR")) {
 
                                                 }
                                             }
@@ -163,7 +163,7 @@
                                             url: '@Url.Action("SetOrderStatus", "API")',
                                             data: { id: blockId, param: "Возвращен"},
                                             success: function (data) {
-                                                if (data == "ERROR") {
+                                                if (data.includes("ERROR")) {
 
                                                 }
                                             }
@@ -185,7 +185,7 @@
                                         url: '@Url.Action("SetCustomerName", "API")',
                                         data: { id: blockId, param: input.val() },
                                         success: function (data) {
-                                            if (data == "ERROR") {
+                                            if (data.includes("ERROR")) {
                                                 var th = $('<th class="ChangeableName"/>').html(targettext);
                                                 input.replaceWith(th);
                                             }
@@ -208,9 +208,9 @@
                                     $.ajax({
                                         type: "GET",
                                         url: '@Url.Action("SetOrderValue", "API")',
-                                        data: { id: blockId, param: input.val() },
+                                        data: { id: blockId, param: input.val(), makevalid: $("#makevalidSwitch").prop("checked")},
                                         success: function (data) {
-                                            if (data == "ERROR") {
+                                            if (data.includes("ERROR")) {
                                                 var th = $('<th class="ChangeableAmount"/>').html(targettext);
                                                 input.replaceWith(th);
                                             }
@@ -225,7 +225,7 @@
                                 break;
                             case 'ChangeablePhone':
                                 var input = $('<input />');
-                                input.mask("+7(999) 999-9999");
+                                input.mask("+7(999)999-99-99");
                                 var targettext = $(target).text();
                                 input.val(targettext);
                                 var blockId = getBlockId(target);
@@ -236,7 +236,7 @@
                                         url: '@Url.Action("SetCustomerPhone", "API")',
                                         data: {id: blockId, param: input.val()},
                                         success: function (data) {
-                                            if (data == "ERROR") {
+                                            if (data.includes("ERROR")) {
                                                 var th = $('<th class="ChangeablePhone"/>').html(targettext);
                                                 input.replaceWith(th);
                                             }
@@ -262,7 +262,7 @@
                                         url: '@Url.Action("SetCustomerBirdate", "API")',
                                         data: {id: blockId, param: input.val()},
                                         success: function (data) {
-                                            if (data == "ERROR") {
+                                            if (data.includes("ERROR")) {
                                                 var th = $('<th class="ChangeableDate"/>').html(targettext);
                                                 input.replaceWith(th);
                                             }
@@ -288,7 +288,7 @@
                                         url: '@Url.Action("SetOrderRegdate", "API")',
                                         data: {id: blockId, param: input.val()},
                                         success: function (data) {
-                                            if (data == "ERROR") {
+                                            if (data.includes("ERROR")) {
                                                 var th = $('<th class="ChangeableOrderDate"/>').html(targettext);
                                                 input.replaceWith(th);
                                             }
@@ -313,7 +313,7 @@
                                         url: '@Url.Action("SetCustomerEmail", "API")',
                                         data: {id: blockId, param: input.val()},
                                         success: function (data) {
-                                            if (data == "ERROR") {
+                                            if (data.includes("ERROR")) {
                                                 var th = $('<th class="ChangeableEmail"/>').html(targettext);
                                                 input.replaceWith(th);
                                             }

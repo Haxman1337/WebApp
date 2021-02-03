@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <Customers>
-    <Customer cid="1" Name="Иванов Иван Иваныч" Birdate="23.12.3213" Email="11123@a.c" Phone="+7(321) 321-3213" Regdate="11.11.1111">
+    <Customer cid="1" Name="Semen" Birdate="12.32.1321" Email="12312312@asfsa.asd" Phone="+7(111)111-11-11" Regdate="11.11.1111">
       <COrders>
         <Corder coid="1" />
         <Corder coid="2" />
         <Corder coid="3" />
       </COrders>
     </Customer>
-    <Customer cid="2" Name="Name232121321" Birdate="32.14.1253" Email="dasdsadasd@xyz.com21421421r" Phone="+7(123) 213-1232" Regdate="11.11.1111">
+    <Customer cid="2" Name="Name232121321" Birdate="32.14.1253" Email="dasdsadasd@xyz.com21421421r" Phone="+7(123)213-1232" Regdate="11.11.1111">
       <COrders>
         <order coid="4" />
         <order coid="5" />
@@ -22,10 +22,10 @@
     </Customer>
   </Customers>
   <Orders>
-    <Order oid="1" Customer="1" Value="1111123" Regdate="11.11.1111" Status="Куплен" />
-    <Order oid="2" Customer="1" Value="1111" Regdate="11.11.1121" Status="Возвращен" />
-    <Order oid="3" Customer="1" Value="1111" Regdate="11.11.1111" Status="Заблокирован" />
-    <Order oid="4" Customer="2" Value="11113123" Regdate="11.11.1111" Status="Куплен" />
+    <Order oid="1" Customer="1" Value="1234.12" Regdate="11.11.1111" Status="Куплен" />
+    <Order oid="2" Customer="1" Value="111.10" Regdate="11.11.1121" Status="Возвращен" />
+    <Order oid="3" Customer="1" Value="1110" Regdate="11.11.1111" Status="Заблокирован" />
+    <Order oid="4" Customer="2" Value="1111" Regdate="11.11.1111" Status="Куплен" />
     <Order oid="5" Customer="2" Value="1111" Regdate="11.11.1111" Status="Куплен" />
     <Order oid="6" Customer="2" Value="1111" Regdate="11.11.1111" Status="Возвращен" />
     <Order oid="7" Customer="2" Value="1111" Regdate="11.11.1111" Status="Возвращен" />

@@ -216,7 +216,19 @@ namespace WebApplication1.Tools
             }
             return false;
         }
+        /////////
+        
 
+        // doesnt work right now
+        public static bool createOrder()
+        {
+            XmlDocument xDoc = new XmlDocument();
+            xDoc.Load(AppDomain.CurrentDomain.GetData("DataDirectory") + "/test.xml");
+            XmlElement root = xDoc.DocumentElement;
+            XmlElement orders = (XmlElement)root.GetElementsByTagName("Orders")[0];
+            XmlElement customers = (XmlElement)root.GetElementsByTagName("Customers")[0];
+            return false;
+        }
 
 
     }
