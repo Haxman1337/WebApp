@@ -248,6 +248,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\_CustomerBlockV2.cshtml" />
+    <Content Include="Views\Home\_Order.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\API\" />

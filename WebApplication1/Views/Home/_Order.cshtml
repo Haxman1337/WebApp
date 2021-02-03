@@ -1,17 +1,17 @@
 ﻿@model System.Xml.XmlElement
-@{ 
-    string coid = Model.GetAttribute("coid");
-    string status = WebApplication1.Tools.XmlWorks.getOrderStatusByCoid(coid);
-    string customer = WebApplication1.Tools.XmlWorks.getCustomerNameByCoid(coid);
-    string cid = WebApplication1.Tools.XmlWorks.getCustomerIdByCoid(coid);
-    string value = WebApplication1.Tools.XmlWorks.getOrderValueByCoid(coid);
-    string regdate = WebApplication1.Tools.XmlWorks.getOrderRegdateByCoid(coid);
+@{
+    string oid = Model.GetAttribute("oid");
+    string status = Model.GetAttribute("Status");
+    string cid = Model.GetAttribute("Customer");
+    string customer = WebApplication1.Tools.XmlWorks.getCustomerNameByCid(cid);
+    string value = Model.GetAttribute("Value");
+    string regdate = Model.GetAttribute("Regdate");
 
     string color = ""; if (status == "Куплен") { color += "green;"; } else if (status == "Возвращен") { color += "DarkBlue;"; } else { color += "Red;"; }
 
 }
-<div class="ClientDropDown ClientPanel" id="@coid">
-    <div><button class="InreversibleOption" onclick="removeOrder(@coid)">Удалить</button> id: @coid </div>
+<div class="ClientDropDown ClientPanel" id="@oid" style="display: block;">
+    <div><button class="InreversibleOption" onclick="removeOrder(@oid)">Удалить</button> id: @oid </div>
     <table class="ClientDropDownTable">
         <tr>
             <td>Статус</td>
@@ -40,3 +40,4 @@
         </tr>
     </table>
 </div>
+

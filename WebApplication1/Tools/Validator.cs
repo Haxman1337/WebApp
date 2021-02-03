@@ -39,7 +39,7 @@ namespace WebApplication1.Tools
         {
             if (name.Length < 51)
             {
-                if (Regex.IsMatch(name, @"^[а-яА-ЯёЁa-zA-Z]+$")) return true;
+                if (Regex.IsMatch(name, @"^[а-яА-ЯёЁa-zA-Z ]+$")) return true;
             }
             return false;
         }

@@ -81,6 +81,19 @@ namespace WebApplication1.Tools
             }
             return "";
         }
+
+        public static string getCustomerIdByCoid(string coid)
+        {
+            XmlDocument xDoc = new XmlDocument();
+            xDoc.Load(AppDomain.CurrentDomain.GetData("DataDirectory") + "/test.xml");
+            XmlElement root = xDoc.DocumentElement;
+            XmlElement orders = (XmlElement)root.GetElementsByTagName("Orders")[0];
+            foreach (XmlElement elem in orders)
+            {
+                if (elem.GetAttribute("oid") == coid) return elem.GetAttribute("Customer");
+            }
+            return "";
+        }
         ////////////////////////////////////
         public static bool setCustomerNameByCid(string cid, string input)
         {

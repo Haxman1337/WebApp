@@ -25,7 +25,9 @@ namespace WebApplication1.Controllers
 
         public ActionResult Orders()
         {
-            return View("Orders");
+            XmlDocument xDoc = new XmlDocument();
+            xDoc.Load(AppDomain.CurrentDomain.GetData("DataDirectory") + "/test.xml");
+            return View("Orders", (XmlElement)xDoc.SelectSingleNode("root/Orders"));
         }
     }
 }

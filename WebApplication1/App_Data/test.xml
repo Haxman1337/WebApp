@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <Customers>
-    <Customer cid="1" Name="Semen" Birdate="33.33.3333" Email="1231231112@asfsa.asd" Phone="+7(111)111-11-11" Regdate="11.11.1111">
+    <Customer cid="1" Name="Великий князь Алексей Александрович" Birdate="11.11.1111" Email="1231231112@asfsa.asd" Phone="+7(111)111-11-11" Regdate="11.11.1111">
       <COrders>
         <Corder coid="1" />
         <Corder coid="2" />
         <Corder coid="3" />
       </COrders>
     </Customer>
-    <Customer cid="2" Name="Name232121321" Birdate="21.11.1111" Email="dasdsadasd@xyz.com21421421r" Phone="+7(123)213-1232" Regdate="11.11.1111">
+    <Customer cid="2" Name="Grand Duke Alexei Alexandrovich of Russia" Birdate="21.11.1111" Email="dasdsadasd@xyz.com21421421r" Phone="+7(123)213-12-32" Regdate="11.11.1111">
       <COrders>
         <Corder coid="4" />
         <Corder coid="5" />
@@ -16,16 +16,16 @@
         <Corder coid="7" />
       </COrders>
     </Customer>
-    <Customer cid="3" Name="Name2321" Birdate="11.11.1111" Email="dasdsadasd@xyz.com" Phone="+7(123)456-78-90" Regdate="11.11.1111">
+    <Customer cid="3" Name="short name" Birdate="11.11.1111" Email="dasdsadasd@xyz.com" Phone="+7(123)456-78-90" Regdate="11.11.1111">
       <COrders>
       </COrders>
     </Customer>
   </Customers>
   <Orders>
-    <Order oid="1" Customer="1" Value="1234.12" Regdate="10.12.1111" Status="Куплен" />
-    <Order oid="2" Customer="1" Value="111.10" Regdate="11.11.1121" Status="Возвращен" />
+    <Order oid="1" Customer="1" Value="1234122.11" Regdate="10.12.1111" Status="Возвращен" />
+    <Order oid="2" Customer="1" Value="1100.00" Regdate="11.11.1121" Status="Возвращен" />
     <Order oid="3" Customer="1" Value="1110.00" Regdate="11.11.1111" Status="Заблокирован" />
-    <Order oid="4" Customer="2" Value="1111" Regdate="11.11.1111" Status="Куплен" />
+    <Order oid="4" Customer="2" Value="1111.60" Regdate="11.11.1111" Status="Куплен" />
     <Order oid="5" Customer="2" Value="1111" Regdate="11.11.1111" Status="Куплен" />
     <Order oid="6" Customer="2" Value="1111" Regdate="11.11.1111" Status="Возвращен" />
     <Order oid="7" Customer="2" Value="1111" Regdate="11.11.1111" Status="Возвращен" />

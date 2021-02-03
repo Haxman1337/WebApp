@@ -33,20 +33,26 @@
         </table>
     </div>
     @{
-
+        string nothinghere = "";
         foreach (System.Xml.XmlElement xnode in Model)
         {
             if (xnode.Name == "COrders")
             {
-                foreach (System.Xml.XmlElement elem in xnode.ChildNodes)
+                if (xnode.ChildNodes.Count > 0)
                 {
-                    Html.RenderPartial("_CustomerDropDown", elem);
+                    foreach (System.Xml.XmlElement elem in xnode.ChildNodes)
+                    {
+                        Html.RenderPartial("_CustomerDropDown", elem);
+                    }
                 }
+                else
+                {
+                    nothinghere = "<div class=\"ClientDropDown ClientPanel\"> Тут пусто... </div>";
+                    
+                }
+
             }
         }
-        /*for (int i = 0; i < 2; i++)
-        {
-            Html.RenderPartial("_ClientDropDown", Model);
-        }*/
     }
+    @Html.Raw(nothinghere)
 </div>

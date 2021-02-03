@@ -1,8 +1,17 @@
-﻿@{
+﻿@model System.Xml.XmlElement
+@{
     ViewData["Title"] = "Test";
 }
 
 <div class="text-center">
     <h1 class="display-4">Заказы</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <input type="checkbox" id="makevalidSwitch" name="name" value="" checked /> Пробовать делать суммы заказов валидными
+    <button type="button" class="showInreversibleOptions" id="hidden">Вкл. опасные функции</button>
 </div>
+
+@{
+    foreach (System.Xml.XmlElement elem in Model)
+    {
+        Html.RenderPartial("_Order", elem);
+    }
+}
