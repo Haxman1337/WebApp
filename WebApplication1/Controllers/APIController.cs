@@ -42,7 +42,7 @@ namespace WebApplication1.Controllers
         public string SetCustomerBirdate(ControllerContext controllerContext)
         {
             string date = Request.QueryString.Get("param");
-            if (Validator.isValidDate(date)) return "ERRORinvalid date";
+            if (!Validator.isValidDate(date)) return "ERRORinvalid date";
             if (XmlWorks.setCustomerBirdateByCid(Request.QueryString.Get("id"), date)) return "OK";
             return "ERROR";
         }
