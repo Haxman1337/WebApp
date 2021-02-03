@@ -9,8 +9,8 @@
     string color = ""; if (status == "Куплен") { color += "green;"; } else if (status == "Возвращен") { color += "DarkBlue;"; } else { color += "Red;"; }
 
 }
-<div class="ClientDropDown ClientPanel" id="@Model.GetAttribute("coid")">
-    id: @Model.GetAttribute("coid")
+<div class="ClientDropDown ClientPanel" id="@coid">
+    <div><button class="InreversibleOption" onclick="removeOrder(@coid)">Удалить</button> id: @coid </div>
     <table class="ClientDropDownTable">
         <tr>
             <td>Статус</td>

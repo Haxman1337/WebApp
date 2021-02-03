@@ -10,13 +10,13 @@
     </Customer>
     <Customer cid="2" Name="Name232121321" Birdate="21.11.1111" Email="dasdsadasd@xyz.com21421421r" Phone="+7(123)213-1232" Regdate="11.11.1111">
       <COrders>
-        <order coid="4" />
-        <order coid="5" />
-        <order coid="6" />
-        <order coid="7" />
+        <Corder coid="4" />
+        <Corder coid="5" />
+        <Corder coid="6" />
+        <Corder coid="7" />
       </COrders>
     </Customer>
-    <Customer cid="3" Name="Name2321" Birdate="11.11.1111" Email="dasdsadasd@xyz.com" Phone="1234567890" Regdate="11.11.1111">
+    <Customer cid="3" Name="Name2321" Birdate="11.11.1111" Email="dasdsadasd@xyz.com" Phone="+7(123)456-78-90" Regdate="11.11.1111">
       <COrders>
       </COrders>
     </Customer>
@@ -24,7 +24,7 @@
   <Orders>
     <Order oid="1" Customer="1" Value="1234.12" Regdate="10.12.1111" Status="Куплен" />
     <Order oid="2" Customer="1" Value="111.10" Regdate="11.11.1121" Status="Возвращен" />
-    <Order oid="3" Customer="1" Value="1110" Regdate="11.11.1111" Status="Заблокирован" />
+    <Order oid="3" Customer="1" Value="1110.00" Regdate="11.11.1111" Status="Заблокирован" />
     <Order oid="4" Customer="2" Value="1111" Regdate="11.11.1111" Status="Куплен" />
     <Order oid="5" Customer="2" Value="1111" Regdate="11.11.1111" Status="Куплен" />
     <Order oid="6" Customer="2" Value="1111" Regdate="11.11.1111" Status="Возвращен" />

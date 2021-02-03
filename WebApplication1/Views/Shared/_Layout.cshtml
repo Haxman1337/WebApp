@@ -13,7 +13,7 @@
     @Styles.Render("~/Content/css")
 
 
-    <!--Перенести с отдельный файл, а лучше вовсе избавиться-->
+    <!--Перенести в отдельный файл, а лучше вовсе избавиться-->
     <style media="screen">
         body {
             margin: 0;
@@ -67,8 +67,13 @@
             padding-left: 0;
             text-align: center;
         }
+
         td, th {
             padding: 5px;
+        }
+
+        .InreversibleOption{
+            display: none;
         }
     </style>
 </head>
@@ -100,6 +105,36 @@
     </div><script>
                     // для тестов это пока побудет здесь, а не в отдельном файле
 
+        function removeCustomer(cid) {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("RemoveCustomer", "API")',
+                data: { id: cid},
+                success: function (data) {
+                    if (data.includes("ERROR")) {
+                    }
+                    else {
+                        $("#" + cid +".ClientPanel").remove();
+                    }
+                }
+            });
+        }
+
+        function removeOrder(coid) {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("RemoveOrder", "API")',
+                data: { id: coid},
+                success: function (data) {
+                    if (data.includes("ERROR")) {
+                    }
+                    else {
+                        $("#" + coid + ".ClientPanel").remove();
+                    }
+                }
+            });
+        }
+
         function getBlockId(trgt) {
             return trgt.closest(".ClientPanel").id;
         }
@@ -118,7 +153,19 @@
                                     target.id = 'hidden';
                                     $(target).html('Заказы...');
                                 }
-                            break;
+                                break;
+                            case 'showInreversibleOptions':
+                                if (target.id == 'hidden') {
+                                    $(".InreversibleOption").css("display", "inline-block");
+                                    target.id = 'nothidden';
+                                    $(target).html('Выкл. опасные функции');
+                                }
+                                else {
+                                    $(".InreversibleOption").css("display", "none");
+                                    target.id = 'hidden';
+                                    $(target).html('Вкл. опасные функции');
+                                }
+                                break;
                             case 'dropdown-item':
                                 switch ($(target).attr('id')) {
                                     case 'dropdownBought':

@@ -1,7 +1,10 @@
 ﻿@model System.Xml.XmlElement
+@{
+    string cid = Model.GetAttribute("cid");
+}
 <div class="Client">
-    <div class="ClientPanel" id="@Model.GetAttribute("cid")">
-        id: @Model.GetAttribute("cid")
+    <div class="ClientPanel" id="@cid">
+        <div><button class="InreversibleOption" onclick="removeCustomer(@cid)">Удалить</button> id: @cid </div>
         <table>
             <tr>
                 <td>ФИО</td>

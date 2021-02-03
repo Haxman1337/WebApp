@@ -26,7 +26,7 @@ namespace WebApplication1.Tools
             }
             return "";
         }
-        
+
         public static string getOrderStatusByCoid(string coid)
         {
             XmlDocument xDoc = new XmlDocument();
@@ -36,7 +36,7 @@ namespace WebApplication1.Tools
             foreach (XmlElement elem in orders)
             {
                 if (elem.GetAttribute("oid") == coid) return elem.GetAttribute("Status");
-               
+
             }
             return "";
         }
@@ -91,7 +91,7 @@ namespace WebApplication1.Tools
             XmlElement customers = (XmlElement)root.GetElementsByTagName("Customers")[0];
             foreach (XmlElement elem in customers)
             {
-                if (elem.GetAttribute("cid") == cid) 
+                if (elem.GetAttribute("cid") == cid)
                 {
                     elem.SetAttribute("Name", input);
                     xDoc.Save(AppDomain.CurrentDomain.GetData("DataDirectory") + "/test.xml");
@@ -217,19 +217,109 @@ namespace WebApplication1.Tools
             return false;
         }
         /////////
-        
 
-        // doesnt work right now
-        public static bool createOrder()
+        public static void createOrder(string cid, string orderStatus, string orderValue, string orderDate)
         {
             XmlDocument xDoc = new XmlDocument();
             xDoc.Load(AppDomain.CurrentDomain.GetData("DataDirectory") + "/test.xml");
             XmlElement root = xDoc.DocumentElement;
             XmlElement orders = (XmlElement)root.GetElementsByTagName("Orders")[0];
             XmlElement customers = (XmlElement)root.GetElementsByTagName("Customers")[0];
-            return false;
+            XmlElement neededToGetId = (XmlElement)orders.LastChild;
+            string orderId = (int.Parse(neededToGetId.GetAttribute("oid")) + 1).ToString();
+            string order = "<Order oid=\"" + orderId + "\" Customer=\"" + cid + "\" Value=\"" + orderValue + "\" Regdate=\"" + orderDate + "\" Status=\"" + orderStatus + "\" />";
+            orders.InnerXml += order;
+            foreach (XmlElement customer in customers)
+            {
+                if (customer.GetAttribute("cid") == cid)
+                {
+                    customer.GetElementsByTagName("COrders")[0].InnerXml += "<Corder coid=\"" + orderId + "\" />"; ;
+                }
+            }
+            xDoc.Save(AppDomain.CurrentDomain.GetData("DataDirectory") + "/test.xml");
         }
 
+        public static void createCustomer(string name, string birdate, string email, string phone, string regdate)
+        {
+            XmlDocument xDoc = new XmlDocument();
+            xDoc.Load(AppDomain.CurrentDomain.GetData("DataDirectory") + "/test.xml");
+            XmlElement root = xDoc.DocumentElement;
+            XmlElement customers = (XmlElement)root.GetElementsByTagName("Customers")[0];
+            XmlElement neededToGetId = (XmlElement)customers.LastChild;
+            string cid = (int.Parse(neededToGetId.GetAttribute("cid")) + 1).ToString();
+            customers.InnerXml += "<Customer cid=\"" + cid + "\" Name=\"" + name + "\" Birdate=\"" + birdate + "\" Email=\"" + email + "\" Phone=\"" + phone + "\" Regdate=\"" + regdate + "\"><COrders></COrders >";
+            xDoc.Save(AppDomain.CurrentDomain.GetData("DataDirectory") + "/test.xml");
+        }
 
+        public static void removeOrder(string oid)
+        {
+            XmlDocument xDoc = new XmlDocument();
+            xDoc.Load(AppDomain.CurrentDomain.GetData("DataDirectory") + "/test.xml");
+            XmlElement root = xDoc.DocumentElement;
+            string cid = "undefined";
+            XmlNode order = root.SelectSingleNode("Orders/Order[@oid='"+ oid +"']");
+            if (order != null)
+            {
+                cid = (order as XmlElement).GetAttribute("Customer");
+                XmlNode parent = order.ParentNode;
+                parent.RemoveChild(order);
+            }
+            XmlNode customerOrd = root.SelectSingleNode("Customers/Customer[@cid='" + cid + "']/COrders/Corder[@coid='"+ oid +"']");
+            if (customerOrd != null)
+            {
+                XmlNode parent = customerOrd.ParentNode;
+                parent.RemoveChild(customerOrd);
+            }
+            xDoc.Save(AppDomain.CurrentDomain.GetData("DataDirectory") + "/test.xml");
+        }
+
+        public static void removeCustomer(string cid)
+        {
+            XmlDocument xDoc = new XmlDocument();
+            xDoc.Load(AppDomain.CurrentDomain.GetData("DataDirectory") + "/test.xml");
+            XmlElement root = xDoc.DocumentElement;
+            List<string> ordersid = new List<string>();
+            List<XmlElement> ordersToRemove = new List<XmlElement>();
+            XmlNode customer = root.SelectSingleNode("Customers/Customer[@cid='" + cid + "']");
+            if (customer != null)
+            {
+                XmlNode COrders = root.SelectSingleNode("Customers/Customer[@cid='" + cid + "']/COrders");
+                foreach (XmlElement order in COrders)
+                {
+                    ordersid.Add(order.GetAttribute("coid"));
+                }
+                XmlNode parent = customer.ParentNode;
+                parent.RemoveChild(customer);
+            }
+            XmlNode orders = root.SelectSingleNode("Orders");
+            if (orders != null)
+            {
+                foreach (XmlElement order in orders)
+                {
+                    if(ordersid.Contains(order.GetAttribute("oid"))) ordersToRemove.Add(order);
+                }
+                foreach (XmlElement order in ordersToRemove)
+                {
+                    orders.RemoveChild(order);
+                }
+            }
+            xDoc.Save(AppDomain.CurrentDomain.GetData("DataDirectory") + "/test.xml");
+        }
+
+        public static XmlNode getCustomerNodeById(string cid)
+        {
+            XmlDocument xDoc = new XmlDocument();
+            xDoc.Load(AppDomain.CurrentDomain.GetData("DataDirectory") + "/test.xml");
+            XmlElement root = xDoc.DocumentElement;
+            return root.SelectSingleNode("Customers/Customer[@cid='" + cid + "']");
+        }
+
+        public static XmlNode getOrderNodeById(string oid)
+        {
+            XmlDocument xDoc = new XmlDocument();
+            xDoc.Load(AppDomain.CurrentDomain.GetData("DataDirectory") + "/test.xml");
+            XmlElement root = xDoc.DocumentElement;
+            return root.SelectSingleNode("Orders/Order[@oid='" + oid + "']");
+        }
     }
 }

@@ -9,6 +9,23 @@ namespace WebApplication1.Tools
 {
     public static class Validator
     {
+        public static bool customerExists(string id)
+        {
+            if (Regex.IsMatch(id, @"\d{1,}"))
+            {
+                if (XmlWorks.getCustomerNodeById(id) != null) return true;
+            }
+            return false;
+        }
+
+        public static bool orderExists(string id)
+        {
+            if (Regex.IsMatch(id, @"\d{1,}"))
+            {
+                if (XmlWorks.getOrderNodeById(id) != null) return true;
+            }
+            return false;
+        }
         public static bool isValidDate(string date)
         {
             DateTime r;
@@ -59,6 +76,13 @@ namespace WebApplication1.Tools
             }
             return false;
         }
+
+        public static bool isValidStatus(string status)
+        {
+            if (status != "Куплен" && status != "Возвращен" && status != "Заблокирован") return false;
+            return true;
+        }
+
         public static bool isValidValue(string value)
         {
             if (Regex.IsMatch(value, @"\d{1,}[.]\d{2}")) return true;
