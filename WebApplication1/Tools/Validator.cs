@@ -20,7 +20,7 @@ namespace WebApplication1.Tools
 
         public static bool orderExists(string id)
         {
-            if (Regex.IsMatch(id, @"\d{1,}"))
+            if (Regex.IsMatch(id, @"^\d{1,}$"))
             {
                 if (XmlWorks.getOrderNodeById(id) != null) return true;
             }
@@ -31,7 +31,7 @@ namespace WebApplication1.Tools
             DateTime r;
             if (DateTime.TryParse(date, out r))
             {
-                if (Regex.IsMatch(date, @"\d{2}[.]\d{2}[.]\d{4}")) return true;
+                if (Regex.IsMatch(date, @"^\d{2}[.]\d{2}[.]\d{4}$")) return true;
             }
             return false;
         }
@@ -46,7 +46,7 @@ namespace WebApplication1.Tools
 
         public static bool isValidPhone(string phone)
         { 
-            if (Regex.IsMatch(phone, @"[+][7][(]\d{3}[)]\d{3}[-]\d{2}[-]\d{2}")) return true;
+            if (Regex.IsMatch(phone, @"^[+][7][(]\d{3}[)]\d{3}[-]\d{2}[-]\d{2}$")) return true;
             return false;
         }
 
@@ -85,15 +85,15 @@ namespace WebApplication1.Tools
 
         public static bool isValidValue(string value)
         {
-            if (Regex.IsMatch(value, @"\d{1,}[.]\d{2}")) return true;
-            return false;
+            if (Regex.IsMatch(value, @"^\d{1,}[.]\d{2}$")) { return true; }
+            else return false;
         }
 
         public static string makeValueValid(string value) //автоисправление строки при незначительных ошибках
         {
-            if (Regex.IsMatch(value, @"\d{1,}[.]\d")) return value += "0";
-            if (Regex.IsMatch(value, @"\d{1,}[.]")) return value += "00";
-            if (Regex.IsMatch(value, @"\d{1,}")) return value += ".00";
+            if (Regex.IsMatch(value, @"^\d{1,}[.]\d$")) return value += "0";
+            if (Regex.IsMatch(value, @"^\d{1,}[.]$")) return value += "00";
+            if (Regex.IsMatch(value, @"^\d{1,}$")) return value += ".00";
             return value;
         }
     }

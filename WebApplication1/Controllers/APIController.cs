@@ -75,7 +75,7 @@ namespace WebApplication1.Controllers
             bool parseOk = false;
             bool makeValid = bool.TryParse(Request.QueryString.Get("makevalid"), out parseOk);
             if (!parseOk && !Validator.isValidValue(value)) return "ERRORmakevalid is not valid";
-            if (parseOk && makeValid &&!Validator.isValidValue(value)) value = Validator.makeValueValid(value);
+            if (parseOk && makeValid && !Validator.isValidValue(value)) value = Validator.makeValueValid(value);
             if (!Validator.isValidValue(value)) return "ERRORinvalid value";
             if (XmlWorks.setOrderValueByOid(Request.QueryString.Get("id"), value)) return "OK";
             return "ERROR";
@@ -128,6 +128,27 @@ namespace WebApplication1.Controllers
             if (!Validator.orderExists(oid)) return "ERRORinvalid id";
             XmlWorks.removeOrder(oid);
             return "OK";
+        }
+
+        //////////
+
+        public string ChangeOrderCustomer()
+        {
+            string oid = Request.QueryString.Get("id");
+            if (!Validator.orderExists(oid)) return "ERRORinvalid id";
+            string cid = Request.QueryString.Get("cid");
+            if (!Validator.customerExists(cid)) return "ERRORinvalid cid";
+            XmlWorks.changeOrderCustomer(oid, cid);
+            return "OK";
+        }
+
+        ////////
+        
+        public string GetCustomerNameByCid()
+        {
+            string cid = Request.QueryString.Get("id");
+            if (!Validator.customerExists(cid)) return "#doesnt exist#";
+            return XmlWorks.getCustomerNameByCid(cid);
         }
     }
 }

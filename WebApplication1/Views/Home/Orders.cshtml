@@ -7,6 +7,9 @@
     <h1 class="display-4">Заказы</h1>
     <input type="checkbox" id="makevalidSwitch" name="name" value="" checked /> Пробовать делать суммы заказов валидными
     <button type="button" class="showInreversibleOptions" id="hidden">Вкл. опасные функции</button>
+    <button type="button" class="showNewOrderBlock" id="hidden">Новый заказ...</button>
+    <hr />
+    @{Html.RenderPartial("_NewOrder");}
 </div>
 
 @{

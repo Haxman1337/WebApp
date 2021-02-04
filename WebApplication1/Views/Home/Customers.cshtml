@@ -6,12 +6,13 @@
     <h1 class="display-4">Клиенты</h1>
     <input type="checkbox" id="makevalidSwitch" name="name" value="" checked /> Пробовать делать суммы заказов валидными
     <button type="button" class="showInreversibleOptions" id="hidden">Вкл. опасные функции</button>
+    <button type="button" class="showNewCustomerBlock" id="hidden">Добавить клиента...</button>
 </div>
 
 @model System.Xml.XmlElement
 
 @{
-
+    Html.RenderPartial("_NewCustomer");
     foreach (System.Xml.XmlElement xnode in Model)
     {
         if (xnode.Name == "Customers")

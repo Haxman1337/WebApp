@@ -20,6 +20,7 @@
             padding: 0;
             background: #dcdcdc;
             padding-top: 4.5rem;
+            min-width: 760px;
         }
 
         .Client {
@@ -102,8 +103,23 @@
         <main role="main" class="container">
             @RenderBody()
         </main>
-    </div><script>
-                    // для тестов это пока побудет здесь, а не в отдельном файле
+    </div>
+    <script>
+        // для тестов это пока побудет здесь, а не в отдельном файле
+        function sendNewOrder() {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("CreateOrder", "API")',
+                data: { cid: $(".newId").text, status: $("#newStatus").text, value: $(".newAmount").text, date: $(".newDate").text },
+                success: function (data) {
+                    if (data.includes("ERROR")) {
+                    }
+                    else {
+                        
+                    }
+                }
+            });
+        }
 
         function removeCustomer(cid) {
             $.ajax({
@@ -164,6 +180,30 @@
                                     $(".InreversibleOption").css("display", "none");
                                     target.id = 'hidden';
                                     $(target).html('Вкл. опасные функции');
+                                }
+                                break;
+                            case 'showNewOrderBlock':
+                                if (target.id == 'hidden') {
+                                    $("#NewOrder").css("display", "block");
+                                    target.id = 'nothidden';
+                                    $(target).html('Отмена нового заказа');
+                                }
+                                else {
+                                    $("#NewOrder").css("display", "none");
+                                    target.id = 'hidden';
+                                    $(target).html('Новый заказ...');
+                                }
+                                break;
+                            case 'showNewCustomerBlock':
+                                if (target.id == 'hidden') {
+                                    $("#NewCustomer").css("display", "block");
+                                    target.id = 'nothidden';
+                                    $(target).html('Не добавлять клиента');
+                                }
+                                else {
+                                    $("#NewCustomer").css("display", "none");
+                                    target.id = 'hidden';
+                                    $(target).html('Добавить клиента...');
                                 }
                                 break;
                             case 'dropdown-item':
@@ -373,12 +413,38 @@
                                 };
                                 input.one('blur', save).focus();
                                 break;
+                            case 'ChangeableId':
+                                var input = $('<input />');
+                                var targettext = $(target).text();
+                                input.val(targettext);
+                                var blockId = getBlockId(target);
+                                target.replaceWith($(input)[0]);
+                                var save = function () {
+                                    $.ajax({
+                                        type: "GET",
+                                        url: '@Url.Action("ChangeOrderCustomer", "API")',
+                                        data: {id: blockId, cid: input.val()},
+                                        success: function (data) {
+                                            if (data.includes("ERROR")) {
+                                                var th = $('<th class="ChangeableId"/>').html(targettext);
+                                                input.replaceWith(th);
+                                            }
+                                            else {
+                                                var th = $('<th class="ChangeableId"/>').html(input.val());
+                                                input.replaceWith(th);
+                                                location.reload(true);
+                                            }
+                                        }
+                                    });
+                                };
+                                input.one('blur', save).focus();
+                                break;
                         }
 
 
 
                     });
-</script>
+    </script>
 
 
     @RenderSection("Scripts", required: false)

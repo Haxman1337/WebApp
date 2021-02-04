@@ -1,0 +1,99 @@
+﻿@{
+    string status = "Заблокирован";
+    string color = ""; if (status == "Куплен") { color += "green;"; } else if (status == "Возвращен") { color += "DarkBlue;"; } else { color += "Red;"; }
+}
+
+<div class="ClientDropDown ClientPanel" id="NewOrder" style="display: none;">
+    <form id="newOrder">
+        <div>Новый заказ</div>
+        <table class="ClientDropDownTable">
+            <tr>
+                <td>Статус</td>
+                <td>Имя</td>
+                <td>Cid</td>
+            </tr>
+            <tr>
+                <th class="newChangeableStatus">
+                    <div class="StatusDropdown">
+                        <div class="dropdown">
+                            <a class="btn btn-secondary" href="#" style="background-color: @color" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">@status</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" id="dropdownBlocked" href="#" onclick="return false">Заблокирован</a>
+                                <a class="dropdown-item" id="dropdownBought" href="#" onclick="return false">Куплен</a>
+                                <a class="dropdown-item" id="dropdownReturned" href="#" onclick="return false">Возвращен</a>
+                            </div>
+                        </div>
+                    </div>
+                    <input id="newStatus" name="status" style="display: none;" value="Заблокирован"/>
+                </th>
+                <th ><input disabled id="newName"/></th>
+                <th class="newId"><input id="newOrderCid" name="cid" /></th>
+            </tr>
+            <tr>
+                <td>Сумма (только ###.##)</td>
+                <td>Дата</td>
+                <td></td>
+            </tr>
+            <tr>
+                <th><input name="value" id="newValue"/></th>
+                <th><input name="date" id="newDate"/></th>
+                <th><button type="submit" name="create">Создать</button></th>
+            </tr>
+        </table>
+    </form>
+</div>
+<script>
+    $("#newDate").mask("99.99.9999");
+
+
+    $("#newOrder").on("submit", function () {
+        $.ajax({
+            url: '@Url.Action("CreateOrder", "API")',
+            method: 'get',
+            dataType: 'html',
+            data: $(this).serialize(),
+            success: function (data) {
+                if (data.includes("ERROR")) {
+                    alert("Некоторые данные невалидны или сервер недоступен");
+                }
+                else {
+                    sleep(1500);
+                }
+            }
+        });
+    });
+
+    $("#dropdownBlocked").on("click", function () {
+        var text = $(this).text();
+        $("#newStatus").val(text);
+    });
+
+    $("#dropdownBought").on("click", function () {
+        var text = $(this).text();
+        $("#newStatus").val(text);
+    });
+
+    $("#dropdownReturned").on("click", function () {
+        var text = $(this).text();
+        $("#newStatus").val(text);
+    });
+
+    $('#newOrderCid').on('change keydown paste input', function () {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("GetCustomerNameByCid", "API")',
+            data: { id: $("#newOrderCid").val()},
+            success: function (data) {
+                $('#newName').val(data);
+            }
+        });
+    });
+
+        function sleep(milliseconds) {
+            const date = Date.now();
+            let currentDate = null;
+            do {
+                currentDate = Date.now();
+            } while (currentDate - date < milliseconds);
+        }
+</script>

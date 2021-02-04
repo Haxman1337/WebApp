@@ -17,17 +17,35 @@ namespace WebApplication1.Controllers
 
         public ActionResult Customers()
         {
-            XmlDocument xDoc = new XmlDocument();
-            xDoc.Load(AppDomain.CurrentDomain.GetData("DataDirectory")+"/test.xml");
+            while (true)
+            {
+                try
+                {
+                    XmlDocument xDoc = new XmlDocument();
+                    xDoc.Load(AppDomain.CurrentDomain.GetData("DataDirectory") + "/test.xml");
 
-            return View("Customers", xDoc.DocumentElement);
+                    return View("Customers", xDoc.DocumentElement);
+                }
+                catch (Exception e)
+                {
+                }
+            }
         }
 
         public ActionResult Orders()
         {
-            XmlDocument xDoc = new XmlDocument();
-            xDoc.Load(AppDomain.CurrentDomain.GetData("DataDirectory") + "/test.xml");
-            return View("Orders", (XmlElement)xDoc.SelectSingleNode("root/Orders"));
+            while (true)
+            {
+                try 
+                {
+                    XmlDocument xDoc = new XmlDocument();
+                    xDoc.Load(AppDomain.CurrentDomain.GetData("DataDirectory") + "/test.xml");
+                    return View("Orders", (XmlElement)xDoc.SelectSingleNode("root/Orders"));
+                } 
+                catch (Exception e) 
+                {
+                }
+            }
         }
     }
 }

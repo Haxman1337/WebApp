@@ -1,0 +1,55 @@
+﻿
+<div class="Client">
+    <div class="ClientPanel" id="NewCustomer" style="display: none;">
+        <form  id="newCustomer">
+            <table>
+                <tr>
+                    <td>ФИО</td>
+                    <th colspan="4" class="newChangeableName"><input name="name" id="newName" value="" style="max-width: 436px; width: 436px;" /></th>
+                </tr>
+                <tr>
+                    <td>Тел.</td>
+                    <th class="newChangeablePhone"><input name="phone" id="newPhone" value="" /></th>
+                    <td>e-mail</td>
+                    <th class="newChangeableEmail"><input name="email" id="newEmail" value="" /></th>
+                </tr>
+                <tr>
+
+                    <td>ДР</td>
+                    <th class="newChangeableDate"><input name="date" id="newDate" value="" /></th>
+                    <td>Рег.</td>
+                    <th class=""><input name="regdate" disabled value="Today, now" /></th>
+                    <th><button>Создать</button></th>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+    <script>
+        $("#newDate").mask("99.99.9999");
+        $("#newPhone").mask("+7(999)999-99-99");
+
+
+    $("#newCustomer").on("submit", function () {
+        $.ajax({
+            url: '@Url.Action("CreateCustomer", "API")',
+            method: 'get',
+            dataType: 'html',
+            data: $(this).serialize(),
+            success: function (data) {
+                if (data.includes("ERROR")) {
+                    alert("Некоторые данные невалидны или сервер недоступен");
+                    sleep(1500);
+                }
+            }
+        });
+    });
+
+        function sleep(milliseconds) {
+            const date = Date.now();
+            let currentDate = null;
+            do {
+                currentDate = Date.now();
+            } while (currentDate - date < milliseconds);
+        }
+    </script>
