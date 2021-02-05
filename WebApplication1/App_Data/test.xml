@@ -26,7 +26,15 @@
         <Corder coid="9" />
       </COrders>
     </Customer>
-    <Customer cid="5" Name="Новый Клиент" Birdate="11.11.1111" Email="aaa@aa.aa" Phone="+7(112)312-32-13" Regdate="05.02.2021">
+    <Customer cid="5" Name="Новый Клиент" Birdate="12.12.1212" Email="aaa@aa.aa" Phone="+7(112)312-32-13" Regdate="05.02.2021">
+      <COrders>
+      </COrders>
+    </Customer>
+    <Customer cid="6" Name="Новый Клиент" Birdate="11.11.1111" Email="aaa@aa.aa" Phone="+7(112)312-32-13" Regdate="05.02.2021">
+      <COrders>
+      </COrders>
+    </Customer>
+    <Customer cid="7" Name="Тест" Birdate="11.11.1111" Email="aaa@aa.aa" Phone="+7(112)312-32-13" Regdate="05.02.2021">
       <COrders>
       </COrders>
     </Customer>

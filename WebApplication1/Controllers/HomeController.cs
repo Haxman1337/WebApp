@@ -21,10 +21,11 @@ namespace WebApplication1.Controllers
             {
                 try
                 {
-                    XmlDocument xDoc = new XmlDocument();
-                    xDoc.Load(AppDomain.CurrentDomain.GetData("DataDirectory") + "/test.xml");
-
-                    return View("Customers", xDoc.DocumentElement);
+                    /*XmlDocument xDoc = new XmlDocument();
+                   xDoc.Load(AppDomain.CurrentDomain.GetData("DataDirectory") + "/test.xml");
+                    */
+                    XmlWorks2.Prepare();
+                    return View("Customers", XmlWorks2.root);
                 }
                 catch (Exception e)
                 {
@@ -38,9 +39,9 @@ namespace WebApplication1.Controllers
             {
                 try 
                 {
-                    XmlDocument xDoc = new XmlDocument();
-                    xDoc.Load(AppDomain.CurrentDomain.GetData("DataDirectory") + "/test.xml");
-                    return View("Orders", (XmlElement)xDoc.SelectSingleNode("root/Orders"));
+                    /*XmlDocument xDoc = new XmlDocument();
+                    xDoc.Load(AppDomain.CurrentDomain.GetData("DataDirectory") + "/test.xml");*/
+                    return View("Orders", (XmlElement)XmlWorks2.xDoc.SelectSingleNode("root/Orders"));
                 } 
                 catch (Exception e) 
                 {
